@@ -1,5 +1,5 @@
 {
-  "name": "tslint-eslint-rules",
+  "name": "@linked-helper/tslint-eslint-rules",
   "version": "5.4.0",
   "description": "Improve your TSLint with the missing ESLint Rules",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/buzinas/tslint-eslint-rules.git"
+    "url": "https://github.com/Good-Proton/tslint-eslint-rules.git"
   },
   "keywords": [
     "eslint",
