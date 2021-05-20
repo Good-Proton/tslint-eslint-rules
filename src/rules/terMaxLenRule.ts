@@ -363,9 +363,9 @@ class MaxLenWalker extends Lint.RuleWalker {
     const comments: INode[] = ignoreComments || maxCommentLength || ignoreTrailingComments ? this.comments : [];
 
     let commentsIndex = 0;
-    const stringsByLine = this.strings.reduce(groupByLineNumber, {});
-    const templatesByLine = this.templates.reduce(groupByLineNumber, {});
-    const regExpByLine = this.regExp.reduce(groupByLineNumber, {});
+    const stringsByLine = this.strings.reduce(groupByLineNumber, []);
+    const templatesByLine = this.templates.reduce(groupByLineNumber, []);
+    const regExpByLine = this.regExp.reduce(groupByLineNumber, []);
     const totalLines = lineStarts.length;
 
     for (let i = 0; i < totalLines; ++i) {

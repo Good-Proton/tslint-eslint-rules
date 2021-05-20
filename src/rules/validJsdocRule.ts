@@ -358,6 +358,8 @@ class ValidJsdocWalker extends Lint.RuleWalker {
           }
           else {
             if (!tag.type && OPTIONS.requireReturnType) {
+              console.log('rule', Rule.FAILURE_STRING.missingReturnType, start, start + width);
+              console.log(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturnType));
               this.addFailure(this.createFailure(start, width, Rule.FAILURE_STRING.missingReturnType));
             }
 

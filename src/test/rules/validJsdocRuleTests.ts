@@ -150,7 +150,7 @@ ruleTester.addTestGroup('valid-default', 'should pass when using valid JSDoc com
 ruleTester.addTestGroupWithConfig(
   'no-require-return',
   'should pass when using valid JSDoc comments (requireReturn: false)',
-  { requireReturn: false },
+  [{ requireReturn: false }],
   [
     `/**
       * Description
@@ -242,7 +242,7 @@ ruleTester.addTestGroupWithConfig(
 ruleTester.addTestGroupWithConfig(
   'no-require-param-desc',
   'should pass when using valid JSDoc comments (requireParamDescription: false)',
-  { requireParamDescription: false },
+  [{ requireParamDescription: false }],
   [
     `/**
       * Description
@@ -255,7 +255,7 @@ ruleTester.addTestGroupWithConfig(
 ruleTester.addTestGroupWithConfig(
   'no-require-ret-desc',
   'should pass when using valid JSDoc comments (requireReturnDescription: false)',
-  { requireReturnDescription: false },
+  [{ requireReturnDescription: false }],
   [
     `/**
       * Description
@@ -268,7 +268,7 @@ ruleTester.addTestGroupWithConfig(
 ruleTester.addTestGroupWithConfig(
   'match-desc',
   'should pass when using valid JSDoc comments (matchDescription: "regex")',
-  { matchDescription: MATCH_DESCRIPTION_TEST },
+  [{ matchDescription: MATCH_DESCRIPTION_TEST }],
   [
     `/**
       * Start with caps and end with period.
@@ -280,7 +280,7 @@ ruleTester.addTestGroupWithConfig(
 ruleTester.addTestGroupWithConfig(
   'prefer',
   'should pass when using valid JSDoc comments (prefer: { return: "return" })',
-  { prefer: { 'return': 'return' } },
+  [{ prefer: { 'return': 'return' } }],
   [
     `/** Foo
       @return {void} Foo
@@ -474,7 +474,7 @@ ruleTester.addTestGroup('invalid', 'should fail when using invalid JSDoc comment
 ruleTester.addTestGroupWithConfig(
   'invalid-pref-ret',
   'should fail when using invalid JSDoc comments (prefer: { return: "returns" })',
-  { prefer: { 'return': 'returns' } },
+  [{ prefer: { 'return': 'returns' } }],
   [
     {
       code: dedent`
@@ -519,7 +519,7 @@ ruleTester.addTestGroupWithConfig(
 ruleTester.addTestGroupWithConfig(
   'invalid-pref-arg',
   'should fail when using invalid JSDoc comments (prefer: { argument: "arg" })',
-  { prefer: { 'argument': 'arg' } },
+  [{ prefer: { 'argument': 'arg' } }],
   [
     {
       code: dedent`
@@ -538,7 +538,7 @@ ruleTester.addTestGroupWithConfig(
 ruleTester.addTestGroupWithConfig(
   'invalid-pref-rets-ret',
   'should fail when using invalid JSDoc comments (prefer: { returns: "return" })',
-  { prefer: { 'returns': 'return' } },
+  [{ prefer: { 'returns': 'return' } }],
   [
     {
       code: dedent`
@@ -553,7 +553,7 @@ ruleTester.addTestGroupWithConfig(
 ruleTester.addTestGroupWithConfig(
   'invalid-match-desc',
   'should fail when using invalid JSDoc comments (matchDescription: "regex")',
-  { matchDescription: MATCH_DESCRIPTION_TEST },
+  [{ matchDescription: MATCH_DESCRIPTION_TEST }],
   [
     {
       code: dedent`
@@ -616,10 +616,10 @@ ruleTester.addTestGroupWithConfig(
 ruleTester.addTestGroupWithConfig(
   'invalid-req-ret-match',
   'should fail when using invalid JSDoc comments (matchDescription: "regex", requireReturn: false)',
-  {
+  [{
     requireReturn: false,
     matchDescription: MATCH_DESCRIPTION_TEST
-  },
+  }],
   [
     {
       code: dedent`
@@ -709,10 +709,10 @@ ruleTester.addTestGroup('issue178', 'issue 178 - Should not crash with incorrect
 ruleTester.addTestGroupWithConfig(
   'issue238',
   "issue 238 - Cannot read property 'name' of null",
-  {
+  [{
     requireReturn: false,
     requireReturnType: false
-  },
+  }],
   [
     {
       code: dedent`
@@ -747,7 +747,7 @@ ruleTester.addTestGroup('ret-type', 'should handle requireReturnType option', [
        * @return some string
        */
        function foo(a) { return '' }`,
-    options: { requireReturnType: false }
+    options: [{ requireReturnType: false }]
   }
 ]);
 
@@ -770,7 +770,7 @@ ruleTester.addTestGroup('param-type', 'should handle requireParamType option', [
        * @return {string} some string
        */
        function foo(a) { return '' }`,
-    options: { requireParamType: false }
+    options: [{ requireParamType: false }]
   }
 ]);
 
@@ -789,7 +789,7 @@ ruleTester.addTestGroup('error-location', 'error location should span the commen
         }
 
       }`,
-    options: { requireReturn: false },
+    options: [{ requireReturn: false }],
     errors: [{
       failure: "missing JSDoc for parameter 'x'",
       startPosition: new Position(6, 2),
@@ -808,7 +808,7 @@ ruleTester.addTestGroup('never-or-void-return-type', 'functions that return "nev
         throw new Error('Foo');
       }
       `,
-    options: { requireReturn: false },
+    options: [{ requireReturn: false }],
     errors: []
   },
   {
@@ -820,7 +820,7 @@ ruleTester.addTestGroup('never-or-void-return-type', 'functions that return "nev
         throw new Error('Foo');
       }
       `,
-    options: { requireReturn: false },
+    options: [{ requireReturn: false }],
     errors: []
   },
   {
@@ -839,7 +839,7 @@ ruleTester.addTestGroup('never-or-void-return-type', 'functions that return "nev
         while (true) {};
       }
       `,
-    options: { requireReturn: false },
+    options: [{ requireReturn: false }],
     errors: []
   },
   {
@@ -858,7 +858,7 @@ ruleTester.addTestGroup('never-or-void-return-type', 'functions that return "nev
         while (true) {};
       }
       `,
-    options: { requireReturn: false },
+    options: [{ requireReturn: false }],
     errors: []
   },
   {
@@ -878,7 +878,7 @@ ruleTester.addTestGroup('never-or-void-return-type', 'functions that return "nev
         while (true) {};
       }
       `,
-    options: { requireReturn: false, requireReturnType: false },
+    options: [{ requireReturn: false, requireReturnType: false }],
     errors: []
   },
   {
@@ -898,7 +898,7 @@ ruleTester.addTestGroup('never-or-void-return-type', 'functions that return "nev
         while (true) {};
       }
       `,
-    options: { requireReturn: false, requireReturnType: false },
+    options: [{ requireReturn: false, requireReturnType: false }],
     errors: []
   },
   {
@@ -919,7 +919,7 @@ ruleTester.addTestGroup('never-or-void-return-type', 'functions that return "nev
         while (true) {};
       }
       `,
-    options: { requireReturn: true, requireReturnType: false },
+    options: [{ requireReturn: true, requireReturnType: false }],
     errors: []
   },
   {
@@ -940,7 +940,7 @@ ruleTester.addTestGroup('never-or-void-return-type', 'functions that return "nev
         while (true) {};
       }
       `,
-    options: { requireReturn: true, requireReturnType: false },
+    options: [{ requireReturn: true, requireReturnType: false }],
     errors: []
   }
 ]);
