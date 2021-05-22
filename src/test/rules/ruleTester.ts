@@ -1,5 +1,5 @@
 import { assert, expect } from 'chai';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as BenchMark from 'benchmark';

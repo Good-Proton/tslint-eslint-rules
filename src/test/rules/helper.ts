@@ -1,6 +1,6 @@
 /// <reference path='../../../typings/chai/chai.d.ts' />
 import { expect } from 'chai';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 const options: Lint.ILinterOptions = {
   fix: false,

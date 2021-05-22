@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 import * as doctrine from 'doctrine';
 
 const RULE_NAME = 'valid-jsdoc';

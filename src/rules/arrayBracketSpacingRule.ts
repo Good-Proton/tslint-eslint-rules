@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 const OPTION_ALWAYS = 'always';
 const RULE_NAME = 'array-bracket-spacing';

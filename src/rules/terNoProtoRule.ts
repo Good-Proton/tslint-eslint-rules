@@ -5,7 +5,7 @@
  * git commit hash: 75b7ba4113db4d9bc1661a4600c8728cf3bfbf2b
  */
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 const RULE_NAME = 'ter-no-proto';
 

@@ -1,4 +1,4 @@
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 import * as ts from 'typescript';
 
 const RULE_NAME = 'sort-imports';

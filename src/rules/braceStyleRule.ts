@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 const OPTION_1TBS = '1tbs';
 const OPTION_ALLMAN = 'allman';

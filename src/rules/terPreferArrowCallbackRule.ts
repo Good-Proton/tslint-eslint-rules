@@ -5,7 +5,7 @@
  * git commit hash: 0b85004acdca863873d5e3cdcfcbe6fe4ac106b6
  */
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 const RULE_NAME = 'ter-prefer-arrow-callback';
 let OPTIONS: any;

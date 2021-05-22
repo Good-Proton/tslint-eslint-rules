@@ -3,7 +3,7 @@
  * source file: https://github.com/eslint/eslint/blob/0cf081ef7249c8e3b9e2cba4710f6205ef996b02/lib/rules/no-script-url.js
  */
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 const RULE_NAME = 'ter-no-script-url';
 

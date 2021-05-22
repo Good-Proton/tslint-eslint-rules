@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 import { isAssignmentToken } from '../support/token';
 
 const RULE_NAME = 'no-constant-condition';

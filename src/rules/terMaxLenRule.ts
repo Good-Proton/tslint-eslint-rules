@@ -7,7 +7,7 @@
  * An addition exception has been added: ignoreImports.
  */
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 import { forEachTokenWithTrivia } from 'tsutils';
 import { IDisabledInterval } from 'tslint/lib/language/rule/rule';

@@ -3,7 +3,7 @@
  * Github Commit Hash: 2bd1dd71c32d286cde10c52140a1d26f2a512a30
  */
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 const RULE_NAME = 'ter-arrow-body-style';
 

@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 import { getLineRanges, getTokenAtPosition, isPositionInComment } from 'tsutils';
 
 const RULE_NAME = 'ter-no-mixed-spaces-and-tabs';

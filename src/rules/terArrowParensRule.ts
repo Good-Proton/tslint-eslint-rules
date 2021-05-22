@@ -6,7 +6,7 @@
  *
  */
 import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 const RULE_NAME = 'ter-arrow-parens';
 const always = 'Expected parentheses around arrow function argument.';

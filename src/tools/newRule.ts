@@ -6,7 +6,7 @@ export function writeNewRule(ruleKebabName: string): void {
   const ruleCamelName = toCamelCase(ruleKebabName);
   const ruleOptionsName = `I${toCamelCase(ruleKebabName, true)}Options`;
   const ruleTemplate = `import * as ts from 'typescript';
-import * as Lint from 'tslint';
+import * as Lint from '@linked-helper/tslint';
 
 const RULE_NAME = '${ruleKebabName}';
 interface ${ruleOptionsName} {
