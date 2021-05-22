@@ -35,6 +35,7 @@
     "gulp-spawn-mocha": "^6.0.0",
     "gulp-tslint": "^8.1.4",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "tslint": "file:./node_modules/@linked-helper/tslint",
     "typescript": "^4.2.4",
     "yargs": "^5.0.0"
   },
