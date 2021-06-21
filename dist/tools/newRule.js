@@ -1,0 +1,25 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.writeNewRuleTests = exports.writeNewRule = void 0;
+var rules_1 = require("../readme/rules");
+var fs = require("fs");
+var path = require("path");
+function writeNewRule(ruleKebabName) {
+    var ruleCamelName = rules_1.toCamelCase(ruleKebabName);
+    var ruleOptionsName = "I" + rules_1.toCamelCase(ruleKebabName, true) + "Options";
+    var ruleTemplate = "import * as ts from 'typescript';\nimport * as Lint from 'tslint';\n\nconst RULE_NAME = '" + ruleKebabName + "';\ninterface " + ruleOptionsName + " {\n  // Add the options properties\n}\n\nexport class Rule extends Lint.Rules.AbstractRule {\n  public static metadata: Lint.IRuleMetadata = {\n    ruleName: RULE_NAME,\n    hasFix: false,\n    description: '',\n    rationale: Lint.Utils.dedent`\n      `,\n    optionsDescription: Lint.Utils.dedent`\n      `,\n    options: {\n      type: 'array',\n      items: [{\n        type: 'object',\n        properties: {\n        },\n        additionalProperties: false\n      }],\n      maxLength: 1\n    },\n    optionExamples: [\n      Lint.Utils.dedent`\n        \"${RULE_NAME}\": [true]\n        `,\n      Lint.Utils.dedent`\n        \"${RULE_NAME}\": [true, {\n        }]\n        `\n    ],\n    typescriptOnly: false,\n    type: ''  // one of \"functionality\" | \"maintainability\" | \"style\" | \"typescript\"\n  };\n\n  private formatOptions(ruleArguments: any[]): " + ruleOptionsName + " {\n    // handle the ruleArguments\n    return {};\n  }\n\n  public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {\n    // Convert the 'ruleArguments' into a useful format before passing it to the constructor of AbstractWalker.\n    const opt = this.formatOptions(this.ruleArguments);\n    const walker = new RuleWalker(sourceFile, this.ruleName, opt);\n    return this.applyWithWalker(walker);\n  }\n}\n\n// NOTE: please remove this comment after reading: https://palantir.github.io/tslint/develop/custom-rules/walker-design.html\nclass RuleWalker extends Lint.AbstractWalker<" + ruleOptionsName + "> {\n  public walk(sourceFile: ts.SourceFile) {\n  }\n}\n";
+    var projectDir = path.dirname(__dirname);
+    var rulePath = path.join(projectDir, "../src/rules/" + ruleCamelName + "Rule.ts");
+    fs.writeFileSync(rulePath, ruleTemplate, { flag: 'wx' });
+}
+exports.writeNewRule = writeNewRule;
+function writeNewRuleTests(ruleKebabName) {
+    var ruleCamelName = rules_1.toCamelCase(ruleKebabName);
+    var testTemplate = "import { RuleTester, Failure, Position, dedent } from './ruleTester';\n\nconst ruleTester = new RuleTester('" + ruleKebabName + "');\n\n// Change this function to better test the rule. In some cases the message never changes so we\n// can avoid passing it in. See other rule tests for examples.\nfunction expecting(errors: [string, number, number][]): Failure[] {\n  return errors.map((err) => {\n    let message = err[0];\n    return {\n      failure: message,\n      startPosition: new Position(err[1]),\n      endPosition: new Position(err[2])\n    };\n  });\n}\n\nruleTester.addTestGroup('group-name', 'should ...', [\n  {\n    code: dedent`\n     // code goes here\n     `,\n    options: [],\n    errors: expecting([\n    ])\n  }\n]);\n\nruleTester.runTests();\n";
+    var projectDir = path.dirname(__dirname);
+    var testPath = path.join(projectDir, "../src/test/rules/" + ruleCamelName + "RuleTests.ts");
+    fs.writeFileSync(testPath, testTemplate, { flag: 'wx' });
+}
+exports.writeNewRuleTests = writeNewRuleTests;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRvb2xzL25ld1J1bGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEseUNBQThDO0FBQzlDLHVCQUF5QjtBQUN6QiwyQkFBNkI7QUFFN0IsU0FBZ0IsWUFBWSxDQUFDLGFBQXFCO0lBQ2hELElBQU0sYUFBYSxHQUFHLG1CQUFXLENBQUMsYUFBYSxDQUFDLENBQUM7SUFDakQsSUFBTSxlQUFlLEdBQUcsTUFBSSxtQkFBVyxDQUFDLGFBQWEsRUFBRSxJQUFJLENBQUMsWUFBUyxDQUFDO0lBQ3RFLElBQU0sWUFBWSxHQUFHLDhGQUdGLGFBQWEsc0JBQ3RCLGVBQWUsNDJCQW9Dc0IsZUFBZSxrbEJBY2pCLGVBQWUsOERBSTdELENBQUM7SUFDQSxJQUFNLFVBQVUsR0FBRyxJQUFJLENBQUMsT0FBTyxDQUFDLFNBQVMsQ0FBQyxDQUFDO0lBQzNDLElBQU0sUUFBUSxHQUFHLElBQUksQ0FBQyxJQUFJLENBQUMsVUFBVSxFQUFFLGtCQUFnQixhQUFhLFlBQVMsQ0FBQyxDQUFDO0lBQy9FLEVBQUUsQ0FBQyxhQUFhLENBQUMsUUFBUSxFQUFFLFlBQVksRUFBRSxFQUFFLElBQUksRUFBRSxJQUFJLEVBQUUsQ0FBQyxDQUFDO0FBQzNELENBQUM7QUFqRUQsb0NBaUVDO0FBRUQsU0FBZ0IsaUJBQWlCLENBQUMsYUFBcUI7SUFDckQsSUFBTSxhQUFhLEdBQUcsbUJBQVcsQ0FBQyxhQUFhLENBQUMsQ0FBQztJQUNqRCxJQUFNLFlBQVksR0FBRyxpSEFFYyxhQUFhLG1vQkEyQmpELENBQUM7SUFDQSxJQUFNLFVBQVUsR0FBRyxJQUFJLENBQUMsT0FBTyxDQUFDLFNBQVMsQ0FBQyxDQUFDO0lBQzNDLElBQU0sUUFBUSxHQUFHLElBQUksQ0FBQyxJQUFJLENBQUMsVUFBVSxFQUFFLHVCQUFxQixhQUFhLGlCQUFjLENBQUMsQ0FBQztJQUN6RixFQUFFLENBQUMsYUFBYSxDQUFDLFFBQVEsRUFBRSxZQUFZLEVBQUUsRUFBRSxJQUFJLEVBQUUsSUFBSSxFQUFFLENBQUMsQ0FBQztBQUMzRCxDQUFDO0FBbkNELDhDQW1DQyIsImZpbGUiOiJ0b29scy9uZXdSdWxlLmpzIiwic291cmNlUm9vdCI6Ii9Vc2Vycy92eWFjaGVzbGF2ZG9yemhpZXYvRGVza3RvcC9wcm9qZWN0cy9AbGlua2VkLWhlbHBlci90c2xpbnQtZXNsaW50LXJ1bGVzL3NyYyJ9
